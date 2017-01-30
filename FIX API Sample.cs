@@ -39,6 +39,7 @@ namespace FIX_API_Sample
         NetworkStream _priceStream;
         TcpClient _tradeClient;
         NetworkStream _tradeStream;
+        MessageConstructor _messageConstructor;
         public frmFIXAPISample()
         {
             InitializeComponent();
@@ -46,25 +47,25 @@ namespace FIX_API_Sample
             _priceStream = _priceClient.GetStream();
             _tradeClient = new TcpClient(_host, _tradePort);
             _tradeStream = _priceClient.GetStream();
+            _messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
         }
 
-        private void btnLogon_Click(object sender, EventArgs e)
+        private void ClearText()
         {
             txtMessageSend.Text = "";
             txtMessageReceived.Text = "";
-            var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.LogonMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber, 30, false);
-            txtMessageSend.Text = message;
-            txtMessageReceived.Text = SendPriceMessage(message);           
         }
+
         private string SendPriceMessage(string message)
         {            
             return SendMessage(message, _priceStream);
         }
+
         private string SendTradeMessage(string message)
         {           
             return SendMessage(message, _tradeStream);
         }
+
         private string SendMessage(string message, NetworkStream stream)
         {
             var byteArray = Encoding.ASCII.GetBytes(message);
@@ -76,12 +77,18 @@ namespace FIX_API_Sample
             return returnMessage;
         }
 
+        private void btnLogon_Click(object sender, EventArgs e)
+        {
+            ClearText();
+            var message = _messageConstructor.LogonMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber, 30, false);
+            txtMessageSend.Text = message;
+            txtMessageReceived.Text = SendPriceMessage(message);
+        }       
+
         private void btnTestRequest_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
-            var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.TestRequestMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber,_testRequestID);
+            ClearText();
+            var message = _messageConstructor.TestRequestMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber,_testRequestID);
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendPriceMessage(message);
@@ -89,10 +96,8 @@ namespace FIX_API_Sample
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
-            var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.LogoutMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber);
+            ClearText();
+            var message = _messageConstructor.LogoutMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber);
             txtMessageSend.Text = message;         
             txtMessageReceived.Text = SendPriceMessage(message);
             _messageSequenceNumber = 1;
@@ -100,31 +105,25 @@ namespace FIX_API_Sample
 
         private void btnMarketDataRequest_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
-            var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.MarketDataRequestMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "EURUSD:WDqsoT", 1,0,0,1,1);
+            ClearText();
+            var message = _messageConstructor.MarketDataRequestMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber, "EURUSD:WDqsoT", 1,0,0,1,1);
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendPriceMessage(message);
         }
 
         private void btnHeartbeat_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
-            var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.HeartbeatMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber);
-            _testRequestID++;
+            ClearText();
+            var message = _messageConstructor.HeartbeatMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber);
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendPriceMessage(message);
         }
 
         private void btnResendRequest_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
+            ClearText();
             var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.ResendMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber);
+            var message = _messageConstructor.ResendMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber);
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendPriceMessage(message);
@@ -132,10 +131,8 @@ namespace FIX_API_Sample
 
         private void btnReject_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
-            var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.RejectMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber,0);
+            ClearText();
+             var message = _messageConstructor.RejectMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber,0);
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendPriceMessage(message);
@@ -143,10 +140,9 @@ namespace FIX_API_Sample
 
         private void btnSequenceReset_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
+            ClearText();
             var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.SequenceResetMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber,0);
+            var message = _messageConstructor.SequenceResetMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber,0);
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendPriceMessage(message);
@@ -154,10 +150,8 @@ namespace FIX_API_Sample
 
         private void btnNewOrderSingle_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
-            var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.NewOrderSingleMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber,"0",1,Timestamp(),1000,1,"1");
+            ClearText();
+            var message = _messageConstructor.NewOrderSingleMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber,"0",1,Timestamp(),1000,1,"1");
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendTradeMessage(message);
@@ -165,10 +159,8 @@ namespace FIX_API_Sample
 
         private void btnOrderStatusRequest_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
-            var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.OrderStatusRequest(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber,"1");
+            ClearText();
+            var message = _messageConstructor.OrderStatusRequest(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber,"1");
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendTradeMessage(message);
@@ -181,13 +173,45 @@ namespace FIX_API_Sample
 
         private void btnRequestForPositions_Click(object sender, EventArgs e)
         {
-            txtMessageSend.Text = "";
-            txtMessageReceived.Text = "";
-            var messageConstructor = new MessageConstructor(_host, _username, _password, _senderCompID, _senderSubID, _targetCompID);
-            var message = messageConstructor.RequestForPositions(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber,"1");
+            ClearText();
+            var message = _messageConstructor.RequestForPositions(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber,"1");
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendTradeMessage(message);
+        }
+
+        private void btnLogonT_Click(object sender, EventArgs e)
+        {
+            ClearText();
+            var message = _messageConstructor.LogonMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, 30, false);
+            txtMessageSend.Text = message;
+            txtMessageReceived.Text = SendTradeMessage(message);
+        }
+
+        private void btnHeartbeatT_Click(object sender, EventArgs e)
+        {
+            ClearText();
+            var message = _messageConstructor.HeartbeatMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber);
+            txtMessageSend.Text = message;
+            txtMessageReceived.Text = SendTradeMessage(message);
+        }
+
+        private void btnTestRequestT_Click(object sender, EventArgs e)
+        {
+            ClearText();
+            var message = _messageConstructor.TestRequestMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, _testRequestID);
+            _testRequestID++;
+            txtMessageSend.Text = message;
+            txtMessageReceived.Text = SendTradeMessage(message);
+        }
+
+        private void btnLogoutT_Click(object sender, EventArgs e)
+        {
+            ClearText();
+            var message = _messageConstructor.LogoutMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber);
+            txtMessageSend.Text = message;
+            txtMessageReceived.Text = SendTradeMessage(message);
+            _messageSequenceNumber = 1;
         }
     }
 }
