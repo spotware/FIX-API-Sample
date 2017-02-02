@@ -19,7 +19,7 @@ namespace FIX_API_Sample
         private int _pricePort = 5201;
         private int _tradePort = 5202;
 
-        private string _host = "80.86.83.6";
+        private string _host = "80.86.83.5";
         private string _username = "3006156";
         private string _password = "";
         private string _senderCompID = "";
