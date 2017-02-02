@@ -1,0 +1,33 @@
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\bin\Debug\FIX API Sample.exe.config
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\bin\Debug\FIX API Sample.exe
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\bin\Debug\FIX API Sample.pdb
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\bin\Debug\FIX API Library.dll
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\bin\Debug\FIX API Library.pdb
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\obj\Debug\FIX API Sample.csprojResolveAssemblyReference.cache
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\obj\Debug\FIX_API_Sample.frmFIXAPISample.resources
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\obj\Debug\FIX_API_Sample.Properties.Resources.resources
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\obj\Debug\FIX API Sample.csproj.GenerateResource.Cache
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\obj\Debug\FIX API Sample.exe
+c:\users\pcharalampous\documents\visual studio 2015\Projects\FIX API Sample\obj\Debug\FIX API Sample.pdb
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\bin\Debug\FIX API Sample.exe.config
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\obj\Debug\FIX API Sample.exe
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\obj\Debug\FIX API Sample.pdb
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\bin\Debug\FIX API Sample.exe
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\bin\Debug\FIX API Sample.pdb
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\bin\Debug\FIX API Library.dll
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\bin\Debug\FIX API Library.pdb
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\obj\Debug\FIX API Sample.csprojResolveAssemblyReference.cache
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\obj\Debug\FIX_API_Sample.Properties.Resources.resources
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\obj\Debug\FIX API Sample.csproj.GenerateResource.Cache
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX API Sample\obj\Debug\FIX_API_Sample.frmFIXAPISample.resources
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\bin\Debug\FIX API Sample.exe.config
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\obj\Debug\FIX API Sample.exe
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\obj\Debug\FIX API Sample.pdb
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\obj\Debug\FIX API Sample.csprojResolveAssemblyReference.cache
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\obj\Debug\FIX_API_Sample.frmFIXAPISample.resources
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\obj\Debug\FIX_API_Sample.Properties.Resources.resources
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\obj\Debug\FIX API Sample.csproj.GenerateResource.Cache
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\bin\Debug\FIX API Sample.exe
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\bin\Debug\FIX API Sample.pdb
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\bin\Debug\FIX API Library.dll
+C:\Users\pcharalampous\Google Drive\Spotware\Code Samples\FIX API Sample\FIX-API-Sample\FIX API Sample\bin\Debug\FIX API Library.pdb
