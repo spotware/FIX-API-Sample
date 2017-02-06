@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -38,10 +39,10 @@ namespace FIX_API_Sample
         public frmFIXAPISample()
         {
             InitializeComponent();
-            _priceClient = new TcpClient(_host, _pricePort);           
+             _priceClient = new TcpClient(_host, _pricePort);           
             _priceStream = _priceClient.GetStream();            
             _tradeClient = new TcpClient(_host, _tradePort);
-            _tradeStream = _priceClient.GetStream();
+            _tradeStream = _tradeClient.GetStream();
             _messageConstructor = new MessageConstructor(_host, _username,
                 _password, _senderCompID, _senderSubID, _targetCompID);
         }
