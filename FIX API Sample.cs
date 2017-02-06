@@ -20,11 +20,11 @@ namespace FIX_API_Sample
         private int _pricePort = 5201;
         private int _tradePort = 5202;
 
-        private string _host = "";
-        private string _username = "";
-        private string _password = "";
-        private string _senderCompID = "";
-        private string _senderSubID = "";
+        private string _host = "h28.p.ctrader.com";
+        private string _username = "3006156";
+        private string _password = "sp0tw@re";
+        private string _senderCompID = "sales.3006156";
+        private string _senderSubID = "3006156";
 
         private string _targetCompID = "CSERVER";
 
@@ -69,7 +69,7 @@ namespace FIX_API_Sample
             stream.Write(byteArray, 0, byteArray.Length);
             var buffer = new byte[1024];
             int i = 0;
-            while (!stream.DataAvailable && i < 10)
+            while (!stream.DataAvailable && i < 100)
             {
                 Thread.Sleep(100);
                 i++;
@@ -153,7 +153,7 @@ namespace FIX_API_Sample
         private void btnNewOrderSingle_Click(object sender, EventArgs e)
         {
             ClearText();
-            var message = _messageConstructor.NewOrderSingleMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber,"1408471",1,1, DateTime.UtcNow.ToString("yyyyMMdd-HH:mm:ss"), 1000,1, "3");
+            var message = _messageConstructor.NewOrderSingleMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "876316397", 1,1, DateTime.UtcNow.ToString("yyyyMMdd-HH:mm:ss"), 1000,1, "1");
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendTradeMessage(message);
@@ -162,7 +162,7 @@ namespace FIX_API_Sample
         private void btnOrderStatusRequest_Click(object sender, EventArgs e)
         {
             ClearText();
-            var message = _messageConstructor.OrderStatusRequest(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "1408471");
+            var message = _messageConstructor.OrderStatusRequest(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "876316397");
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendTradeMessage(message);
