@@ -153,7 +153,7 @@ namespace FIX_API_Sample
         private void btnNewOrderSingle_Click(object sender, EventArgs e)
         {
             ClearText();
-            var message = _messageConstructor.NewOrderSingleMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "876316397", 1,1, DateTime.UtcNow.ToString("yyyyMMdd-HH:mm:ss"), 1000,1, "1");
+            var message = _messageConstructor.NewOrderSingleMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "1408471", 1,1, DateTime.UtcNow.ToString("yyyyMMdd-HH:mm:ss"), 1000,1, "1");
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendTradeMessage(message);
@@ -162,7 +162,7 @@ namespace FIX_API_Sample
         private void btnOrderStatusRequest_Click(object sender, EventArgs e)
         {
             ClearText();
-            var message = _messageConstructor.OrderStatusRequest(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "876316397");
+            var message = _messageConstructor.OrderStatusRequest(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "1408471");
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendTradeMessage(message);
@@ -176,7 +176,7 @@ namespace FIX_API_Sample
         private void btnRequestForPositions_Click(object sender, EventArgs e)
         {
             ClearText();
-            var message = _messageConstructor.RequestForPositions(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "876316401");
+            var message = _messageConstructor.RequestForPositions(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber, "1408471");
             _testRequestID++;
             txtMessageSend.Text = message;
             txtMessageReceived.Text = SendTradeMessage(message);
