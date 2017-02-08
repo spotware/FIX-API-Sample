@@ -20,11 +20,12 @@ namespace FIX_API_Sample
         private int _pricePort = 5201;
         private int _tradePort = 5202;
 
-        private string _host = "h28.p.ctrader.com";
-        private string _username = "3006156";
-        private string _password = "sp0tw@re";
-        private string _senderCompID = "sales.3006156";
-        private string _senderSubID = "3006156";
+        private string _host = "";
+        private string _username = "";
+        private string _password = "";
+        private string _senderCompID = "";
+        private string _senderSubID = "";
+
 
         private string _targetCompID = "CSERVER";
 
@@ -74,13 +75,13 @@ namespace FIX_API_Sample
                 Thread.Sleep(100);
                 i++;
             }
-            if(stream.DataAvailable)
+            if (stream.DataAvailable)
                 stream.Read(buffer, 0, 1024);
             _messageSequenceNumber++;
             var returnMessage = Encoding.ASCII.GetString(buffer);
             return returnMessage;
         }
-      
+
         private void btnLogon_Click(object sender, EventArgs e)
         {
             ClearText();
