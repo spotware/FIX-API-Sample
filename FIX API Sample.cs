@@ -14,11 +14,11 @@ namespace FIX_API_Sample
         private int _pricePort = 5211;
         private int _tradePort = 5212;
 
-        private string _host = "";
-        private string _username = "";
-        private string _password = "";
-        private string _senderCompID = "";
-        private string _senderSubID = "";
+        private string _host = "h28.p.ctrader.com";
+        private string _username = "3006156";
+        private string _password = "sp0tw@re";
+        private string _senderCompID = "sales.3006156";
+        private string _senderSubID = "3006156";
 
         private string _targetCompID = "CSERVER";
 
@@ -59,23 +59,26 @@ namespace FIX_API_Sample
             txtMessageReceived.Text = "";
         }
 
-        private string SendPriceMessage(string message)
+        private string SendPriceMessage(string message, bool readResponse = true)
         {
-            return SendMessage(message, _priceStreamSSL);
+            return SendMessage(message, _priceStreamSSL, readResponse);
         }
 
-        private string SendTradeMessage(string message)
+        private string SendTradeMessage(string message, bool readResponse = true)
         {
-            return SendMessage(message, _tradeStreamSSL);
+            return SendMessage(message, _tradeStreamSSL, readResponse);
         }
 
-        private string SendMessage(string message, SslStream stream)
+        private string SendMessage(string message, SslStream stream, bool readResponse = true)
         {
             var byteArray = Encoding.ASCII.GetBytes(message);
             stream.Write(byteArray, 0, byteArray.Length);
             var buffer = new byte[1024];
-            Thread.Sleep(100);
-            stream.Read(buffer, 0, 1024);
+            if (readResponse)
+            {
+                Thread.Sleep(100);
+                stream.Read(buffer, 0, 1024);
+            }
             _messageSequenceNumber++;
             var returnMessage = Encoding.ASCII.GetString(buffer);
             return returnMessage;
@@ -120,7 +123,7 @@ namespace FIX_API_Sample
             ClearText();
             var message = _messageConstructor.HeartbeatMessage(MessageConstructor.SessionQualifier.QUOTE, _messageSequenceNumber);
             txtMessageSend.Text = message;
-            txtMessageReceived.Text = SendPriceMessage(message);
+            txtMessageReceived.Text = SendPriceMessage(message,false);
         }
 
         private void btnResendRequest_Click(object sender, EventArgs e)
@@ -195,7 +198,7 @@ namespace FIX_API_Sample
             ClearText();
             var message = _messageConstructor.HeartbeatMessage(MessageConstructor.SessionQualifier.TRADE, _messageSequenceNumber);
             txtMessageSend.Text = message;
-            txtMessageReceived.Text = SendTradeMessage(message);
+            txtMessageReceived.Text = SendTradeMessage(message, false);
         }
 
         private void btnTestRequestT_Click(object sender, EventArgs e)
